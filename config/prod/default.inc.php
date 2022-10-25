@@ -70,9 +70,9 @@ return [
     'logger.options' => [],
     
     'kinde' => [
-        'HOST' => 'https://trung.kinde.com',
+        'HOST' => 'YOUR_KINDE_HOST',
         'REDIRECT_URL' => 'http://localhost:8888/callback',
-        'CLIENT_ID' => 'reg@live',
-        'CLIENT_SECRET' => 'AAJXHXZ3HbnVRzvO9G1cO9lsx3UvvNACKT47fMNP4j7O8yKJqWse',
+        'CLIENT_ID' => 'YOUR_KINDE_CLIENT_ID',
+        'CLIENT_SECRET' => 'YOUR_KINDE_CLIENT_SECRET',
     ]
 ];

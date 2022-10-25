@@ -64,7 +64,7 @@ class UserApi extends AbstractUserApi
         ServerRequestInterface $request,
         ResponseInterface $response
     ) {
-        $apiInstance = new KindeUserApi();
+        $apiInstance = new KindeUserApi($this->kindeConfig);
         try {
             $result = $apiInstance->getUserProfile();
             $renderer = new PhpRenderer('../templates');
