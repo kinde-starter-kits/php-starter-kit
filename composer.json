@@ -5,16 +5,12 @@
       "type": "vcs",
       "url": "https://github.com/ybelenko/slim-token-authentication",
       "no-api": true
-    },
-    {
-      "type": "path",
-      "url": "packages/kinde-php-sdk"
     }
   ],
   "require": {
     "php": "^7.4 || ^8.0",
     "dyorg/slim-token-authentication": "dev-slim4",
-    "kinde/oauth2": "*",
+    "kinde-oss/kinde-auth-php": "^0.0.1",
     "monolog/monolog": "^2.4",
     "neomerx/cors-psr7": "^2.0",
     "php-di/slim-bridge": "^3.2",
