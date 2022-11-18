@@ -30,6 +30,7 @@ You should change `Kinde config` in the `config/prod/default.inc.php`:
     'kinde' => [
         'HOST' => 'YOUR_KINDE_HOST',
         'REDIRECT_URL' => 'http://localhost:8888/callback', // Please make sure that the value has already been configured in the Kinde
+        'LOGOUT_REDIRECT_URL' => 'http://localhost:8888',  // Please make sure that the value has already been configured in the Kinde
         'CLIENT_ID' => 'YOUR_KINDE_CLIENT_ID',
         'CLIENT_SECRET' => 'YOUR_KINDE_CLIENT_SECRET',
     ]
@@ -45,4 +46,4 @@ $ php -S localhost:8888 -t public
 
 Now, you can open the browser and go to http://localhost:8888
 
-For more information, please checkout `src/Api/UserApi.php`
+For more information, please checkout `src/Api/Main.php`
