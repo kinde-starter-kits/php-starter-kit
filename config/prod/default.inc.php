@@ -72,6 +72,7 @@ return [
     'kinde' => [
         'HOST' => 'YOUR_KINDE_HOST',
         'REDIRECT_URL' => 'http://localhost:8888/callback',
+        'LOGOUT_REDIRECT_URL' => 'http://localhost:8888',
         'CLIENT_ID' => 'YOUR_KINDE_CLIENT_ID',
         'CLIENT_SECRET' => 'YOUR_KINDE_CLIENT_SECRET',
     ]

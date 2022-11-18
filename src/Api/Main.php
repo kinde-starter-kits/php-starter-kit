@@ -10,6 +10,7 @@ use Slim\Views\PhpRenderer;
 use Kinde\KindeSDK\KindeClientSDK;
 use Kinde\KindeSDK\Configuration;
 use Kinde\KindeSDK\Model\UserProfile;
+use Kinde\KindeSDK\Sdk\Enums\AuthStatus;
 use Kinde\KindeSDK\Sdk\Enums\GrantType;
 use Slim\App;
 
@@ -27,7 +28,7 @@ class Main extends AbstractUserApi
     {
         $container = $app->getContainer();
         $kindeConfig = $container->get('kinde');
-        $this->kindeClient = new KindeClientSDK($kindeConfig['HOST'], $kindeConfig['REDIRECT_URL'], $kindeConfig['CLIENT_ID'], $kindeConfig['CLIENT_SECRET'], GrantType::PKCE);
+        $this->kindeClient = new KindeClientSDK($kindeConfig['HOST'], $kindeConfig['REDIRECT_URL'], $kindeConfig['CLIENT_ID'], $kindeConfig['CLIENT_SECRET'], GrantType::PKCE, $kindeConfig['LOGOUT_REDIRECT_URL']);
         $this->kindeConfig = new Configuration();
         $this->kindeConfig->setHost($kindeConfig['HOST']);
         $this->isAuthenticated = false;
@@ -64,10 +65,12 @@ class Main extends AbstractUserApi
         ResponseInterface $response
     ) {
         try {
-            $token = $this->kindeClient->getToken();
-            if ($token) {
-                $this->isAuthenticated = true;
-                return $this->getProfile($response);
+            if ($this->kindeClient->getAuthStatus() != AuthStatus::UNAUTHENTICATED) {
+                $token = $this->kindeClient->getToken();
+                if ($token) {
+                    $this->isAuthenticated = true;
+                    return $this->getProfile($response);
+                }
             }
             $response = $response->withStatus(302);
             return $response->withHeader('Location', '/');
