@@ -23,6 +23,7 @@ declare(strict_types=1);
  * https://github.com/openapitools/openapi-generator
  * Do not edit the class manually.
  */
+
 namespace OpenAPIServer\App;
 
 /**

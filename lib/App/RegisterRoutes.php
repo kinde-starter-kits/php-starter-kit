@@ -23,12 +23,12 @@ declare(strict_types=1);
  * https://github.com/openapitools/openapi-generator
  * Do not edit the class manually.
  */
+
 namespace OpenAPIServer\App;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotImplementedException;
-use Slim\Views\PhpRenderer;
 
 /**
  * RegisterRoutes Class Doc Comment
@@ -47,8 +47,8 @@ class RegisterRoutes
             'path' => '/',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
-            'operationId' => 'getUserProfile',
+            'userClassname' => 'Main',
+            'operationId' => 'index',
             'responses' => [
                 '200' => [
                     'jsonSchema' => '{
@@ -89,7 +89,7 @@ class RegisterRoutes
             'path' => '/login',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
+            'userClassname' => 'Main',
             'operationId' => 'login',
             'responses' => [
                 '200' => [
@@ -117,7 +117,7 @@ class RegisterRoutes
             'path' => '/callback',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
+            'userClassname' => 'Main',
             'operationId' => 'callback',
             'responses' => [
                 '200' => [
@@ -145,7 +145,7 @@ class RegisterRoutes
             'path' => '/profile',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
+            'userClassname' => 'Main',
             'operationId' => 'getProfile',
             'responses' => [
                 '200' => [
@@ -173,10 +173,9 @@ class RegisterRoutes
             'path' => '/register',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
+            'userClassname' => 'Main',
             'operationId' => 'register',
-            'responses' => [
-            ],
+            'responses' => [],
         ],
         [
             'httpMethod' => 'GET',
@@ -184,10 +183,9 @@ class RegisterRoutes
             'path' => '/logout',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractUserApi',
-            'userClassname' => 'UserApi',
+            'userClassname' => 'Main',
             'operationId' => 'logout',
-            'responses' => [
-            ],
+            'responses' => [],
         ],
     ];
 

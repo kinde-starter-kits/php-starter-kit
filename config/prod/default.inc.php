@@ -68,11 +68,11 @@ return [
     'logger.path' => \realpath(__DIR__ . '/../../logs') . '/app.log',
     'logger.level' => 300, // equals WARNING level
     'logger.options' => [],
-    
+
     'kinde' => [
-        'HOST' => 'YOUR_KINDE_HOST',
+        'HOST' => 'https://trung.kinde.com',
         'REDIRECT_URL' => 'http://localhost:8888/callback',
-        'CLIENT_ID' => 'YOUR_KINDE_CLIENT_ID',
-        'CLIENT_SECRET' => 'YOUR_KINDE_CLIENT_SECRET',
+        'CLIENT_ID' => 'spa@live',
+        'CLIENT_SECRET' => 'AAJXHXZ3HbnVRzvO9G1cO9lsx3UvvNACKT47fMNP4j7O8yKJqWse',
     ]
 ];
