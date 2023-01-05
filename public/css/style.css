@@ -89,6 +89,31 @@ a {
     text-align: center;
 }
 
+.d-flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.input {
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
 .avatar {
     padding: 10px;
     background-color: #000;
@@ -158,5 +183,9 @@ a {
 /* Padding */
 .p-3 {
     padding: 3rem;
+}
+
+.p-1 {
+    padding: 1rem;
 }
 /* End Padding */

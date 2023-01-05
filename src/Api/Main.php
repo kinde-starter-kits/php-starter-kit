@@ -3,21 +3,18 @@
 namespace OpenAPIServer\Api;
 
 use Exception;
-use Kinde\KindeSDK\Api\UserApi as KindeUserApi;
+use Kinde\KindeSDK\Api\OAuthApi;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\PhpRenderer;
 use Kinde\KindeSDK\KindeClientSDK;
 use Kinde\KindeSDK\Configuration;
 use Kinde\KindeSDK\Model\UserProfile;
-use Kinde\KindeSDK\Sdk\Enums\AuthStatus;
 use Kinde\KindeSDK\Sdk\Enums\GrantType;
 use Slim\App;
 
 class Main extends AbstractUserApi
 {
-    private string $isAuthenticated;
-
     private ?UserProfile $userProfile;
 
     private KindeClientSDK $kindeClient;
@@ -31,7 +28,6 @@ class Main extends AbstractUserApi
         $this->kindeClient = new KindeClientSDK($kindeConfig['HOST'], $kindeConfig['REDIRECT_URL'], $kindeConfig['CLIENT_ID'], $kindeConfig['CLIENT_SECRET'], GrantType::PKCE, $kindeConfig['LOGOUT_REDIRECT_URL']);
         $this->kindeConfig = new Configuration();
         $this->kindeConfig->setHost($kindeConfig['HOST']);
-        $this->isAuthenticated = false;
         $this->userProfile = null;
     }
     public function index(
@@ -65,10 +61,9 @@ class Main extends AbstractUserApi
         ResponseInterface $response
     ) {
         try {
-            if ($this->kindeClient->getAuthStatus() != AuthStatus::UNAUTHENTICATED) {
+            if (!$this->kindeClient->isAuthenticated) {
                 $token = $this->kindeClient->getToken();
                 if ($token) {
-                    $this->isAuthenticated = true;
                     return $this->getProfile($response);
                 }
             }
@@ -90,7 +85,7 @@ class Main extends AbstractUserApi
 
     public function getShortName()
     {
-        if ($this->isAuthenticated && !empty($this->userProfile)) {
+        if ($this->kindeClient->isAuthenticated && !empty($this->userProfile)) {
             return strtoupper(substr($this->userProfile->getFirstName(), 0, 1) . substr($this->userProfile->getLastName(), 0, 1));
         };
         return '';
@@ -98,7 +93,7 @@ class Main extends AbstractUserApi
 
     public function getFullName()
     {
-        if ($this->isAuthenticated && !empty($this->userProfile)) {
+        if ($this->kindeClient->isAuthenticated && !empty($this->userProfile)) {
             return $this->userProfile->getFirstName() . ' ' . $this->userProfile->getLastName();
         };
         return '';
@@ -107,11 +102,11 @@ class Main extends AbstractUserApi
     private function getProfile(
         ResponseInterface $response
     ) {
-        $apiInstance = new KindeUserApi($this->kindeConfig);
+        $apiInstance = new OAuthApi($this->kindeConfig);
         try {
-            $this->userProfile = $apiInstance->getUserProfile();
+            $this->userProfile = $apiInstance->getUser();
             $renderer = new PhpRenderer('../templates');
-            return $renderer->render($response, "home.php", ['isAuthenticated' => $this->isAuthenticated, 'shortName' => $this->getShortName(), 'fullName' => $this->getFullName()]);
+            return $renderer->render($response, "home.php", ['isAuthenticated' => $this->kindeClient->isAuthenticated, 'shortName' => $this->getShortName(), 'fullName' => $this->getFullName()]);
         } catch (Exception $e) {
             echo 'Exception when calling KindeUserApi->getUserProfile: ', $e->getMessage(), PHP_EOL;
         }

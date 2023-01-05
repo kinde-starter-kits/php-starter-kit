@@ -23,6 +23,7 @@ declare(strict_types=1);
  * https://github.com/openapitools/openapi-generator
  * Do not edit the class manually.
  */
+
 namespace OpenAPIServer\App;
 
 /**
@@ -110,8 +111,8 @@ final class RegisterDependencies
                 ->parameter('path', \DI\get('logger.path'))
                 ->parameter('level', \DI\get('logger.level'))
                 ->parameter('options', \DI\get('logger.options')),
-            
-                "KindeConfig" => \DI\create()
+
+            "KindeConfig" => \DI\create()
                 ->constructor(
                     \DI\get('kinde.HOST'),
                     \DI\get('kinde.HOST'),
