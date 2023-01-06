@@ -31,4 +31,7 @@
         <!-- Codegen generates variables with underscore on purpose -->
         <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
     </rule>
+    <rule ref="Generic.Files.LineEndings">
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+    </rule>
 </ruleset>
