@@ -187,6 +187,26 @@ class RegisterRoutes
             'operationId' => 'logout',
             'responses' => [],
         ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/create-user',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractUserApi',
+            'userClassname' => 'ManagementUser',
+            'operationId' => 'index',
+            'responses' => [],
+        ],
+        [
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/save-user',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractUserApi',
+            'userClassname' => 'ManagementUser',
+            'operationId' => 'save',
+            'responses' => [],
+        ],
     ];
 
     /**
@@ -242,8 +262,6 @@ class RegisterRoutes
             foreach ($middlewares as $middleware) {
                 $route->add($middleware);
             }
-            // $app->get('/oauth', function ($request, $response) use ($app) {
-            // });
         }
     }
 }

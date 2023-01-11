@@ -43,16 +43,16 @@ return [
         false, // isForceAddMethods
         false, // isForceAddHeaders
         true, // isUseCredentials
-        false, // areAllOriginsAllowed
-        [], // allowedOrigins
-        false, // areAllMethodsAllowed
+        true, // areAllOriginsAllowed
+        ["*"], // allowedOrigins
+        true, // areAllMethodsAllowed
         [], // allowedLcMethods
         '', // allowedMethodsList
         false, // areAllHeadersAllowed
         [], // allowedLcHeaders
         '', // allowedHeadersList
         '', // exposedHeadersList
-        true, // isCheckHost
+        false, // isCheckHost
     ],
 
     // PDO

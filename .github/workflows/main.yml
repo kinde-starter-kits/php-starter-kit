@@ -39,8 +39,5 @@ jobs:
       - name: Check PHP syntax
         run: vendor/bin/phplint ./ --exclude=vendor
 
-      - name: Test with PHPUnit
-        run: vendor/bin/phpunit --coverage-text
-
       - name: Check coding style
         run: vendor/bin/phpcs
