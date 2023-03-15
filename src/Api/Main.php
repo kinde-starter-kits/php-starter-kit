@@ -35,6 +35,9 @@ class Main extends AbstractUserApi
         ResponseInterface $response
     ): ResponseInterface {
         $renderer = new PhpRenderer('../templates');
+        if ($this->kindeClient->isAuthenticated) {
+            return $this->getProfile($response);
+        }
         return $renderer->render($response, "home.php");
     }
 
