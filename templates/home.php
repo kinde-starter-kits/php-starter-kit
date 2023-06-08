@@ -20,6 +20,7 @@
                 </div>
             <?php else : ?>
                 <div class="header-group">
+                    <a class="btn btn-dark" href="/playground" type="button">Flag Playground</a>
                     <a class="btn btn-dark" href="/create-user" type="button">Create user</a>
                     <div class="avatar"> <?= $shortName ?></div>
                     <p class="username"><?= $fullName ?></p>
