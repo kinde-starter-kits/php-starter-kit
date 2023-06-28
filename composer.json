@@ -1,4 +1,8 @@
 {
+  "name": "kinde-starter-kits/php-starter-kit",
+  "version": "0.0.1",
+  "description": "Starter kit to get going with PHP SDK for authentication",
+  "license": "MIT",
   "minimum-stability": "RC",
   "repositories": [
     {
