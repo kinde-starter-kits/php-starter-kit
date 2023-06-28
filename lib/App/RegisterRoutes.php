@@ -198,6 +198,16 @@ class RegisterRoutes
             'responses' => [],
         ],
         [
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/save-user',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractUserApi',
+            'userClassname' => 'ManagementUser',
+            'operationId' => 'save',
+            'responses' => [],
+        ],
+        [
             'httpMethod' => 'GET',
             'basePathWithoutHost' => '',
             'path' => '/playground',

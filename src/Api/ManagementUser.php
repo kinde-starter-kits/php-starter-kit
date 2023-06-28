@@ -57,8 +57,6 @@ class ManagementUser extends AbstractUserApi
             ]
         ]);
 
-        $host = $this->kindeConfig->getHost();
-        $this->kindeConfig->setHost($host . '/api/v1');
         $token = $this->kindeClient->login();
         $this->kindeConfig->setAccessToken($token->access_token);
 
