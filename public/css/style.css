@@ -137,6 +137,7 @@ a {
     display: inline-block;
     font-weight: var(--g-font-weight-bold);
     padding: var(--g-spacing-base);
+    cursor: pointer;
 }
 
 .btn-ghost {

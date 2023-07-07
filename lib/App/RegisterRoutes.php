@@ -207,6 +207,26 @@ class RegisterRoutes
             'operationId' => 'save',
             'responses' => [],
         ],
+        [
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/playground',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractUserApi',
+            'userClassname' => 'Playground',
+            'operationId' => 'index',
+            'responses' => [],
+        ],
+        [
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/playground',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractUserApi',
+            'userClassname' => 'Playground',
+            'operationId' => 'playground',
+            'responses' => [],
+        ],
     ];
 
     /**

@@ -1,4 +1,8 @@
 {
+  "name": "kinde-starter-kits/php-starter-kit",
+  "version": "0.0.1",
+  "description": "Starter kit to get going with PHP SDK for authentication",
+  "license": "MIT",
   "minimum-stability": "RC",
   "repositories": [
     {
@@ -10,7 +14,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "dyorg/slim-token-authentication": "dev-slim4",
-    "kinde-oss/kinde-auth-php": "^0.0.1",
+    "kinde-oss/kinde-auth-php": "^1.2.0",
     "monolog/monolog": "^2.4",
     "neomerx/cors-psr7": "^2.0",
     "php-di/slim-bridge": "^3.2",
