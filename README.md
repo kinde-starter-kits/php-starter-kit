@@ -28,11 +28,11 @@ You should change `Kinde config` in the `config/prod/default.inc.php`:
 ```
 ...
     'kinde' => [
-        'HOST' => 'YOUR_KINDE_HOST',
+        'HOST' => 'https://<your_kinde_subdomain>.kinde.com',
         'REDIRECT_URL' => 'http://localhost:8888/callback', // Please make sure that the value has already been configured in the Kinde
         'LOGOUT_REDIRECT_URL' => 'http://localhost:8888',  // Please make sure that the value has already been configured in the Kinde
-        'CLIENT_ID' => 'YOUR_KINDE_CLIENT_ID',
-        'CLIENT_SECRET' => 'YOUR_KINDE_CLIENT_SECRET',
+        'CLIENT_ID' => '<your_kinde_client_id>',
+        'CLIENT_SECRET' => '<your_kinde_client_secret>',
     ]
 ...
 ```
