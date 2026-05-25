@@ -1,1 +1,7 @@
-* @kinde-oss/giants-kinde
+* @kinde-starter-kits/giants-kinde
+package-lock.json @kinde-starter-kits/sdk-engineers
+**/package-lock.json @kinde-starter-kits/sdk-engineers
+package.json @kinde-starter-kits/sdk-engineers
+**/package.json @kinde-starter-kits/sdk-engineers
+pnpm-lock.yaml @kinde-starter-kits/sdk-engineers
+**/pnpm-lock.yaml @kinde-starter-kits/sdk-engineers
