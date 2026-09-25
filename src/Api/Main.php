@@ -9,14 +9,15 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Views\PhpRenderer;
 use Kinde\KindeSDK\KindeClientSDK;
 use Kinde\KindeSDK\Configuration;
-use Kinde\KindeSDK\Model\UserProfile;
+use Kinde\KindeSDK\Model\UserProfileV2;
 use Kinde\KindeSDK\Sdk\Enums\GrantType;
 use Slim\App;
 use Slim\Logger;
+use OpenAPIServer\CustomHeaderSelector;
 
 class Main extends AbstractUserApi
 {
-    private ?UserProfile $userProfile;
+    private ?UserProfileV2 $userProfile;
 
     private KindeClientSDK $kindeClient;
 
@@ -78,7 +79,7 @@ class Main extends AbstractUserApi
             $response = $response->withStatus(302);
             return $response->withHeader('Location', '/');
         } catch (Exception $e) {
-            echo 'Exception when calling kindeClient->getToken: ', $e->getMessage(), PHP_EOL;
+            $this->logger->error("Exception when calling kindeClient->callback: {$e->getMessage()}");
         }
     }
 
@@ -94,7 +95,7 @@ class Main extends AbstractUserApi
     public function getShortName()
     {
         if ($this->kindeClient->isAuthenticated && !empty($this->userProfile)) {
-            return strtoupper(substr($this->userProfile->getFirstName(), 0, 1) . substr($this->userProfile->getLastName(), 0, 1));
+            return strtoupper(substr($this->userProfile->getGivenName(), 0, 1) . substr($this->userProfile->getFamilyName(), 0, 1));
         };
         return '';
     }
@@ -102,7 +103,7 @@ class Main extends AbstractUserApi
     public function getFullName()
     {
         if ($this->kindeClient->isAuthenticated && !empty($this->userProfile)) {
-            return $this->userProfile->getFirstName() . ' ' . $this->userProfile->getLastName();
+            return $this->userProfile->getGivenName() . ' ' . $this->userProfile->getFamilyName();
         };
         return '';
     }
@@ -111,9 +112,10 @@ class Main extends AbstractUserApi
         ResponseInterface $response
     ) {
         $renderer = new PhpRenderer('../templates');
-        $apiInstance = new OAuthApi($this->kindeConfig);
+        $customHeaderSelector = new CustomHeaderSelector();
+        $apiInstance = new OAuthApi(null, $this->kindeConfig, $customHeaderSelector);
         try {
-            $this->userProfile = $apiInstance->getUser();
+            $this->userProfile = $apiInstance->getUserProfileV2();
             $this->logger->info("getPermissions - orgCode " . $this->kindeClient->getPermissions()['orgCode']);
             $this->logger->info("getPermissions - permissions " . join(", ", $this->kindeClient->getPermissions()['permissions']));
             $this->logger->info("getPermission - orgCode " . $this->kindeClient->getPermission('read:profile')['orgCode']);
